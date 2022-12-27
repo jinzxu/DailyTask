@@ -26,8 +26,8 @@ function App() {
   const submitNewTaskHandler = (task) => {
     setTasks(prevState => (
       [
-        ...prevState,
-        { ...task, id: prevState.length + 1 }
+        { ...task, id: prevState.length + 1 },
+        ...prevState
       ]
     ))
   }
