@@ -24,18 +24,23 @@ function App() {
     }
   ])
   const submitNewTaskHandler = (task) => {
-    setTasks(prevState => (
+    setTasks(prevTasks => (
       [
-        { ...task, id: prevState.length + 1 },
-        ...prevState
+        { ...task, id: prevTasks.length + 1 },
+        ...prevTasks
       ]
+    ))
+  }
+  const deleteTaskHandler = (deletedTask) => {
+    setTasks(prevTasks => (
+      prevTasks.filter(task => task.id != deletedTask.id).map(task => task)
     ))
   }
 
   return (
     <Card>
       <TaskForm onSubmitNewTask={submitNewTaskHandler}></TaskForm>
-      <Tasks tasks={tasks}></Tasks>
+      <Tasks tasks={tasks} onDeleteTask={deleteTaskHandler}></Tasks>
     </Card>
   );
 }

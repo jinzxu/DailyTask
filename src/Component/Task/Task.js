@@ -12,6 +12,9 @@ const Task = (props) => {
             status: "done"
         }))
     }
+    const deleteTaskHandler = () => {
+        props.onDeleteTask(task)
+    }
 
     return (
         <Card>
@@ -19,6 +22,7 @@ const Task = (props) => {
             <TaskDate date={task.date}></TaskDate>
             <TaskStatus status={task.status}></TaskStatus>
             <button onClick={clearStatusHandler}>Clear status</button>
+            <button onClick={deleteTaskHandler}>Delete task</button>
         </Card>
     )
 }
