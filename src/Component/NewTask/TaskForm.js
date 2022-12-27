@@ -56,8 +56,9 @@ const TaskForm = (props) => {
                     <option value='Done'>Done</option>
                 </select>
             </div>
-            <button type="submit">Submit</button>
-        </form>
+            <button type="submit">Add new task</button>
+            <button type="submit" onClick={() => props.onSetIsSubmitting(false)} > Cancel</button>
+        </form >
     )
 }
 export default TaskForm

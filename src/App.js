@@ -23,8 +23,9 @@ const INITIAL_TASKS = [
   }
 ]
 function App() {
-  const [tasks, setTasks] = useState(INITIAL_TASKS)
-  useEffect(() => { setTasks(INITIAL_TASKS) }, [INITIAL_TASKS])
+  const [tasks, setTasks] = useState(INITIAL_TASKS);
+  useEffect(() => { setTasks(INITIAL_TASKS) }, [INITIAL_TASKS]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const submitNewTaskHandler = (task) => {
     setTasks(prevTasks => (
       [
@@ -41,7 +42,8 @@ function App() {
 
   return (
     <Card>
-      <TaskForm onSubmitNewTask={submitNewTaskHandler}></TaskForm>
+      {isSubmitting && <TaskForm onSubmitNewTask={submitNewTaskHandler} onSetIsSubmitting={setIsSubmitting} />}
+      {!isSubmitting && <button onClick={() => setIsSubmitting(true)}>Add new task</button>}
       <Tasks tasks={tasks} onDeleteTask={deleteTaskHandler}></Tasks>
     </Card>
   );
